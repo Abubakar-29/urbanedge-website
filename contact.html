@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — UrbanEdge Interiors</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <meta name="description" content="Get in touch with UrbanEdge Interiors — Let's create your next space." />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="UrbanEdge home">
+        <svg class="logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 21h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 21v-8a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 9h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-text">UrbanEdge</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="transformation.html" class="nav-link">Transformations</a></li>
+          <li><a href="showcase.html" class="nav-link">Showcase</a></li>
+          <li><a href="process.html" class="nav-link">Process</a></li>
+          <li><a href="journal.html" class="nav-link">Journal</a></li>
+          <li><a href="faqs.html" class="nav-link">FAQs</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="contact-hero">
+    <div class="container">
+      <h1>Let’s Create Your Next Space</h1>
+      <p>We’d love to hear from you. Whether it’s a new home, workspace, or collaboration — let’s build something extraordinary together.</p>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <main class="contact-section container">
+    <form class="contact-form" id="contact-form">
+      <div class="form-group">
+        <input type="text" id="name" name="name" required placeholder=" " />
+        <label for="name">Your Name</label>
+      </div>
+
+      <div class="form-group">
+        <input type="email" id="email" name="email" required placeholder=" " />
+        <label for="email">Email Address</label>
+      </div>
+
+      <div class="form-group">
+        <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
+        <label for="message">Message</label>
+      </div>
+
+      <button type="submit" class="btn-primary" id="submit-btn">
+        <span>Send Message</span>
+        <i class="fa-solid fa-arrow-right-long"></i>
+      </button>
+
+      <p class="form-status" id="form-status" aria-live="polite"></p>
+    </form>
+
+    <!-- Map -->
+<div class="contact-map">
+  <iframe
+    title="UrbanEdge Studio Location"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345091523!2d144.9537363158453!3d-37.817209979751824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf5777e0b74a5e9f2!2sUrbanEdge%20Design%20Studio!5e0!3m2!1sen!2sin!4v1614765840444!5m2!1sen!2sin"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+
+  <!-- Fallback image if iframe fails -->
+  <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1400&auto=format&fit=crop"
+       alt="UrbanEdge Studio Map Fallback"
+       class="map-fallback" />
+</div>
+  </main>
+
+  <!-- Quick links -->
+  <section class="contact-info container">
+    <div class="info-grid">
+      <a href="mailto:info@urbanedge.com" class="info-card">
+        <i class="fa-solid fa-envelope"></i>
+        <span>info@urbanedge.com</span>
+      </a>
+      <a href="tel:+919999999999" class="info-card">
+        <i class="fa-solid fa-phone"></i>
+        <span>+91 99999 99999</span>
+      </a>
+      <a href="https://www.instagram.com" target="_blank" class="info-card">
+        <i class="fa-brands fa-instagram"></i>
+        <span>Instagram</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer glass-footer">
+    <div class="footer-inner container">
+      <p>© <span id="yr-full"></span> UrbanEdge Interiors. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/contact.js" defer></script>
+</body>
+</html>

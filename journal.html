@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Journal — UrbanEdge Interiors</title>
+
+  <!-- Global + Page styles -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/journal.css" />
+
+  <!-- Fonts & icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <meta name="description" content="UrbanEdge Journal — editorial stories, studio insights, and design thinking." />
+</head>
+<body>
+  <!-- Header (global) -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="UrbanEdge home">
+        <svg class="logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 21h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 21v-8a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 9h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-text">UrbanEdge</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="transformation.html" class="nav-link">Transformations</a></li>
+          <li><a href="showcase.html" class="nav-link">Showcase</a></li>
+          <li><a href="process.html" class="nav-link">Process</a></li>
+          <li><a href="journal.html" class="nav-link active">Journal</a></li>
+          <li><a href="faqs.html" class="nav-link">FAQs</a></li>
+          <li><a href="contact.html" class="nav-link cta">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page intro -->
+  <main class="journal-page">
+    <section class="journal-hero">
+      <div class="container">
+        <h1 class="journal-title">Journal</h1>
+        <p class="journal-sub">Editorial stories, studio notes, and short films about material, light, and design practice.</p>
+      </div>
+    </section>
+
+    <!-- Filters / meta row -->
+    <section class="journal-controls container">
+      <div class="controls-left">
+        <span class="results">Showing <strong>4</strong> stories</span>
+        <button class="filter-btn" id="filter-all" aria-pressed="true">All</button>
+        <button class="filter-btn" data-filter="studio">Studio</button>
+        <button class="filter-btn" data-filter="projects">Projects</button>
+        <button class="filter-btn" data-filter="materials">Materials</button>
+      </div>
+
+      <div class="controls-right">
+        <label class="search-wrap" for="journal-search">
+          <input id="journal-search" class="journal-search" placeholder="Search articles..." type="search" />
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </label>
+      </div>
+    </section>
+
+    <!-- ARTICLE GRID -->
+    <section class="journal-grid container" aria-live="polite">
+      <!-- Each article is a data-driven card; replace data-* with Firestore later -->
+      <article class="article-card fade-up" tabindex="0"
+               data-id="art-001"
+               data-title="Material Honesty — Wood & Light"
+               data-excerpt="A study of timber, joints, and how natural light reshapes modest spaces into generous ones."
+               data-date="2025-09-12"
+               data-tags="Materials,Studio"
+               data-src="https://images.unsplash.com/photo-1505691723518-36a1b04a0a97?q=80&w=1400&auto=format&fit=crop">
+        <div class="card-media" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <time datetime="2025-09-12">Sep 12, 2025</time>
+            <span class="card-tags">Materials • Studio</span>
+          </div>
+          <h2 class="card-title">Material Honesty — Wood & Light</h2>
+          <p class="card-excerpt">A study of timber, joints, and how natural light reshapes modest spaces into generous ones.</p>
+        </div>
+      </article>
+
+      <article class="article-card fade-up" tabindex="0"
+               data-id="art-002"
+               data-title="Jubilee Hills — A Minimal Refresh"
+               data-excerpt="How we stripped back layers to reveal light and proportions that felt long lost in the original plan."
+               data-date="2025-08-05"
+               data-tags="Projects,Case Study"
+               data-src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1400&auto=format&fit=crop">
+        <div class="card-media" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <time datetime="2025-08-05">Aug 5, 2025</time>
+            <span class="card-tags">Projects • Case Study</span>
+          </div>
+          <h2 class="card-title">Jubilee Hills — A Minimal Refresh</h2>
+          <p class="card-excerpt">How we stripped back layers to reveal light and proportions that felt long lost in the original plan.</p>
+        </div>
+      </article>
+
+      <article class="article-card fade-up" tabindex="0"
+               data-id="art-003"
+               data-title="Studio Precision — Monochrome Interiors"
+               data-excerpt="On restraint, focusing on proportion and texture over ornament."
+               data-date="2025-07-08"
+               data-tags="Studio,Design"
+               data-src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1400&auto=format&fit=crop">
+        <div class="card-media" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <time datetime="2025-07-08">Jul 8, 2025</time>
+            <span class="card-tags">Studio • Design</span>
+          </div>
+          <h2 class="card-title">Studio Precision — Monochrome Interiors</h2>
+          <p class="card-excerpt">On restraint, focusing on proportion and texture over ornament.</p>
+        </div>
+      </article>
+
+      <article class="article-card fade-up" tabindex="0"
+               data-id="art-004"
+               data-title="Lake House — Slow Living Materials"
+               data-excerpt="Natural palettes and quiet systems that support slow domestic life."
+               data-date="2025-06-20"
+               data-tags="Projects,Materials"
+               data-src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1400&auto=format&fit=crop">
+        <div class="card-media" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <time datetime="2025-06-20">Jun 20, 2025</time>
+            <span class="card-tags">Projects • Materials</span>
+          </div>
+          <h2 class="card-title">Lake House — Slow Living Materials</h2>
+          <p class="card-excerpt">Natural palettes and quiet systems that support slow domestic life.</p>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Pagination / Load more (Firebase will handle cursor later) -->
+    <section class="journal-pagination container">
+      <button id="load-more" class="btn-secondary">Load more stories</button>
+    </section>
+  </main>
+
+  <!-- Modal preview (full-screen overlay) -->
+  <div id="journal-modal" class="journal-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="journal-modal-backdrop" data-close="true"></div>
+    <div class="journal-modal-inner">
+      <button class="modal-close" aria-label="Close preview"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-media"></div>
+      <div class="modal-content">
+        <h2 id="modal-title"></h2>
+        <p id="modal-excerpt"></p>
+        <div class="modal-footer">
+          <a id="read-full" class="btn-primary" href="#">Read full story</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer (global) -->
+  <footer class="site-footer glass-footer" role="contentinfo">
+    <div class="footer-inner container">
+      <p>© <span id="yr-full"></span> UrbanEdge Interiors. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js" defer></script>
+  <script src="js/journal.js" defer></script>
+</body>
+</html>

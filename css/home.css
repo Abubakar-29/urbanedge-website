@@ -1,0 +1,443 @@
+/* ----------------------------------------------------------
+   home.css — Cinematic Homepage for UrbanEdge
+   ---------------------------------------------------------- */
+
+/* ---------- GLOBAL ---------- */
+body {
+  background: #fff;
+  color: #111;
+  overflow-x: hidden;
+  font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #111;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(1.1);
+  transition: transform 1s cubic-bezier(.22,1,.36,1);
+}
+
+.hero.visible .hero-bg {
+  transform: scale(1);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.glass-layer {
+  position: absolute;
+  width: 80%;
+  height: 70%;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  opacity: 0.4;
+  transform: rotate(5deg) translateY(20px);
+  animation: floatGlass 10s ease-in-out infinite alternate;
+}
+
+.layer-1 {
+  left: -10%;
+  top: 10%;
+  animation-delay: 0s;
+}
+
+.layer-2 {
+  right: -10%;
+  bottom: 10%;
+  animation-delay: 2s;
+}
+
+@keyframes floatGlass {
+  0% { transform: rotate(5deg) translateY(10px) translateX(0); }
+  100% { transform: rotate(6deg) translateY(-10px) translateX(10px); }
+}
+
+.light-flare {
+  position: absolute;
+  width: 140%;
+  height: 140%;
+  top: -20%;
+  left: -20%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 200, 150, 0.25), transparent 70%);
+  filter: blur(60px);
+  opacity: 0.6;
+  animation: lightShift 12s ease-in-out infinite alternate;
+}
+
+@keyframes lightShift {
+  0% { transform: translate(0,0); opacity: 0.4; }
+  100% { transform: translate(5%, -3%); opacity: 0.7; }
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.hero-title {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1.5s cubic-bezier(.22,1,.36,1);
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  color: #444;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1.5s cubic-bezier(.22,1,.36,1) 0.2s;
+}
+
+.hero.visible .hero-title,
+.hero.visible .hero-sub {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.cta-btn, .cta-ghost {
+  display: inline-block;
+  border-radius: 12px;
+  padding: 0.9rem 1.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.cta-btn {
+  background: #ff6600;
+  color: #fff;
+}
+
+.cta-btn:hover {
+  background: #ff7c1a;
+  transform: translateY(-2px);
+}
+
+.cta-ghost {
+  border: 1px solid #ff6600;
+  color: #ff6600;
+}
+
+.cta-ghost:hover {
+  background: #ff6600;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.scroll-hint {
+  margin-top: 2rem;
+  border: none;
+  background: transparent;
+  color: #ff6600;
+  font-size: 1.2rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* ---------- INTRO / DESIGN DNA ---------- */
+.section-intro {
+  padding: 8rem 2rem;
+  text-align: center;
+}
+
+.section-intro h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.3rem;
+  margin-bottom: 1rem;
+}
+
+.section-intro p {
+  font-size: 1.05rem;
+  color: #555;
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  padding: 2.4rem 2rem;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1.3s cubic-bezier(.22,1,.36,1);
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card i {
+  color: #ff6600;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ---------- PROJECTS ---------- */
+.projects-section {
+  background: #fafafa;
+  padding: 8rem 2rem;
+}
+
+.section-head {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-head h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.3rem;
+}
+
+.section-head .muted {
+  color: #666;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #fff;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 1s cubic-bezier(.22,1,.36,1);
+}
+
+.project-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-thumb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(.22,1,.36,1);
+}
+
+.project-card:hover img {
+  transform: scale(1.1);
+}
+
+.project-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.4rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+  color: #fff;
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(.22,1,.36,1);
+}
+
+.project-card:hover .project-overlay {
+  transform: translateY(0);
+}
+
+.project-overlay h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.project-overlay .tags {
+  display: block;
+  font-size: 0.85rem;
+  opacity: 0.85;
+  margin-top: 0.3rem;
+}
+
+.projects-cta {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+/* ---------- PROCESS MINI TIMELINE ---------- */
+.process-mini {
+  background: #fff;
+  padding: 8rem 2rem;
+  text-align: center;
+}
+
+.timeline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2.5rem 0;
+}
+
+.dot {
+  background: #ff6600;
+  color: #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  position: relative;
+  font-size: 0.9rem;
+}
+
+.dot span {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #111;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.bar {
+  height: 2px;
+  width: 40px;
+  background: #ddd;
+}
+
+.process-cta {
+  margin-top: 3rem;
+}
+
+.process-cta .cta-btn {
+  background: #ff6600;
+  color: #fff;
+}
+
+.process-cta .cta-btn:hover {
+  background: #ff7c1a;
+}
+
+/* ---------- ANIMATIONS & RESPONSIVE ---------- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1.2s cubic-bezier(.22,1,.36,1);
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero {
+    height: 90vh;
+  }
+  .hero-inner {
+    padding-top: 4rem;
+  }
+  .cards, .project-grid {
+    grid-template-columns: 1fr;
+  }
+  .timeline {
+    flex-direction: column;
+  }
+  .dot span {
+    position: static;
+    transform: none;
+    margin-top: 0.4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .hero-sub {
+    font-size: 0.95rem;
+  }
+  .cta-btn, .cta-ghost {
+    padding: 0.8rem 1.6rem;
+  }
+}
+

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UrbanEdge — Designing Spaces That Breathe</title>
+
+  <!-- Global styles -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Page styles (replaceable) -->
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+
+  <!-- Fonts & icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <meta name="description" content="UrbanEdge Interiors — architectural interiors with cinematic minimalism." />
+</head>
+<body>
+  <!-- Header (kept consistent) -->
+  <header class="site-header" role="banner">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="UrbanEdge Home">
+        <svg class="logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 21h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 21v-8a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 9h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-text">UrbanEdge</span>
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="transformation.html" class="nav-link">Transformations</a></li>
+          <li><a href="showcase.html" class="nav-link">Showcase</a></li>
+          <li><a href="process.html" class="nav-link">Process</a></li>
+          <li><a href="journal.html" class="nav-link">Journal</a></li>
+          <li><a href="faqs.html" class="nav-link">FAQs</a></li>
+          <li><a href="contact.html" class="nav-link cta">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <!-- background image (placeholder - replace with Cloudinary later) -->
+    <div class="hero-bg" data-src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=2048&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder"></div>
+
+    <!-- moving light flare & glass layers -->
+    <div class="hero-overlay">
+      <div class="glass-layer layer-1"></div>
+      <div class="glass-layer layer-2"></div>
+      <div class="light-flare"></div>
+    </div>
+
+    <div class="hero-inner container">
+      <h1 class="hero-title">Designing spaces that breathe.</h1>
+      <p class="hero-sub">We craft calm, considered interiors that balance material, light, and the way you live.</p>
+      <div class="hero-ctas">
+        <a class="cta-btn" href="showcase.html">View Projects</a>
+        <a class="cta-ghost" href="process.html">Our Process</a>
+      </div>
+      <button class="scroll-hint" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></button>
+    </div>
+  </section>
+
+  <!-- ===== INTRO / DESIGN DNA ===== -->
+  <section class="section-intro fade-up">
+    <div class="container">
+      <h2>Our design DNA</h2>
+      <p>Three principles guide our work: material honesty, deliberate restraint, and sol id craft. Each project is a dialogue between function and quiet beauty.</p>
+
+      <div class="cards" aria-hidden="false">
+        <div class="card fade-up" data-key="material">
+          <i class="fa-solid fa-layer-group"></i>
+          <h3>Material Honesty</h3>
+          <p>We select materials for durability and warmth — wood, stone, and tactility over trends.</p>
+        </div>
+
+        <div class="card fade-up" data-key="precision">
+          <i class="fa-solid fa-ruler-combined"></i>
+          <h3>Precision Execution</h3>
+          <p>Every joint and junction matters — we bring construction-level thinking into design decisions.</p>
+        </div>
+
+        <div class="card fade-up" data-key="clarity">
+          <i class="fa-solid fa-lightbulb"></i>
+          <h3>Clarified Intent</h3>
+          <p>We strip the unnecessary to reveal function and poetry in equal measure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECT HIGHLIGHTS ===== -->
+  <section class="projects-section fade-up">
+    <div class="container">
+      <header class="section-head">
+        <h2>Selected Works</h2>
+        <p class="muted">A small selection of recent projects — click to explore the full case study in Showcase.</p>
+      </header>
+
+      <div class="project-grid">
+        <!-- project cards (placeholder images) -->
+        <article class="project-card" data-gallery="images/show1a.jpg" aria-label="Jubilee Hills Apartment">
+          <div class="project-thumb">
+            <img src="https://images.unsplash.com/photo-1505691723518-36a1b04a0a97?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Jubilee Hills Apartment" loading="lazy">
+            <div class="project-overlay">
+              <h3>Jubilee Hills Apartment</h3>
+              <span class="tags">Warm Neutrals • Modern</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-gallery="images/show2a.jpg" aria-label="Gachibowli Studio">
+          <div class="project-thumb">
+            <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Gachibowli Studio" loading="lazy">
+            <div class="project-overlay">
+              <h3>Gachibowli Studio</h3>
+              <span class="tags">Monochrome • Daylight</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-gallery="images/show3a.jpg" aria-label="Lakeview Residence">
+          <div class="project-thumb">
+            <img src="https://images.unsplash.com/photo-1549187774-b4e9b0445b0d?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Lakeview Residence" loading="lazy">
+            <div class="project-overlay">
+              <h3>Lakeview Residence</h3>
+              <span class="tags">Contemporary • Calm</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="projects-cta">
+        <a class="cta-btn" href="showcase.html">Browse Full Collection</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS MINI TIMELINE + CTA ===== -->
+  <section class="process-mini fade-up">
+    <div class="container">
+      <header class="section-head">
+        <h2>How we work</h2>
+        <p class="muted">A simple, rigorous process — discovery, concept, design development, execution, handover.</p>
+      </header>
+
+      <div class="timeline">
+        <div class="dot">01<span>Discovery</span></div>
+        <div class="bar"></div>
+        <div class="dot">02<span>Concept</span></div>
+        <div class="bar"></div>
+        <div class="dot">03<span>Design</span></div>
+        <div class="bar"></div>
+        <div class="dot">04<span>Execution</span></div>
+        <div class="bar"></div>
+        <div class="dot">05<span>Handover</span></div>
+      </div>
+
+      <div class="process-cta">
+        <a class="cta-btn" href="contact.html">Start Your Project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER (keeps global style) ===== -->
+  <footer class="site-footer glass-footer" role="contentinfo">
+    <div class="footer-inner container">
+
+      <!-- Brand -->
+      <div class="footer-brand fade-up">
+        <svg class="logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 21h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 21v-8a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 9h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="footer-logo-text">UrbanEdge Interiors</span>
+        <p class="footer-tagline">Spaces that breathe. Designs that last.</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-links fade-up">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="transformations.html">Transformations</a></li>
+          <li><a href="showcase.html">Showcase</a></li>
+          <li><a href="process.html">Process</a></li>
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-contact fade-up">
+        <h4>Connect</h4>
+        <p>Email: <a href="mailto:hello@urbanedge.in">hello@urbanedge.in</a></p>
+        <p>Phone: <a href="tel:+919999999999">+91 99999 99999</a></p>
+        <div class="footer-social">
+          <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="mailto:hello@urbanedge.in" aria-label="Email">
+            <i class="fa-regular fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© <span id="yr-full"></span> UrbanEdge Interiors. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js" defer></script>
+  <script src="js/home.js" defer></script>
+</body>
+</html>

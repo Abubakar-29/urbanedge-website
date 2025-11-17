@@ -1,0 +1,265 @@
+/* ----------------------------------------------------------
+   showcase.css — Cinematic Gallery for UrbanEdge
+   ---------------------------------------------------------- */
+
+/* ---------- GLOBAL ---------- */
+body {
+  background: radial-gradient(circle at 40% 20%, #121214, #0b0b0c);
+  color: #f4f4f4;
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+/* ---------- HERO ---------- */
+.dark-hero {
+  position: relative;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.1);
+  filter: brightness(0.45) contrast(1.2);
+  transition: transform 1.2s cubic-bezier(.22,1,.36,1);
+}
+
+.dark-hero.visible .hero-bg {
+  transform: scale(1);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 40% 40%, rgba(255,165,90,0.25), transparent 70%);
+  filter: blur(80px);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+  padding: 0 2rem;
+}
+
+.hero-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1.2s cubic-bezier(.22,1,.36,1);
+}
+
+.dark-hero.visible .hero-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  color: #b0b0b0;
+  margin-top: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1.2s cubic-bezier(.22,1,.36,1) .15s;
+}
+
+.dark-hero.visible .hero-sub {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- SHOWCASE GRID ---------- */
+.showcase {
+  padding: 8rem 0;
+}
+
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+}
+
+.showcase-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transform: translateY(40px);
+  opacity: 0;
+  transition: transform 1.3s cubic-bezier(.22,1,.36,1), opacity 1.3s cubic-bezier(.22,1,.36,1);
+}
+
+.showcase-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.showcase-thumb {
+  position: relative;
+  width: 100%;
+  padding-top: 65%;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.8);
+  transition: all .8s cubic-bezier(.22,1,.36,1);
+}
+
+.showcase-info {
+  padding: 1.5rem 1.6rem 1.8rem;
+}
+
+.showcase-info h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  margin-bottom: .5rem;
+}
+
+.showcase-info p {
+  font-size: .95rem;
+  color: #b0b0b0;
+}
+
+/* Hover effect */
+.showcase-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 60% 40%, rgba(255,102,0,0.3), transparent 60%);
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+.showcase-card:hover::after { opacity: .6; }
+.showcase-card:hover .showcase-thumb { filter: brightness(1.1) scale(1.05); }
+
+/* ---------- MODAL ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+.modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  position: relative;
+  width: min(90%, 1000px);
+  max-height: 90vh;
+  background: rgba(20,20,22,0.9);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(255,102,0,0.3);
+  animation: modalIn .6s cubic-bezier(.22,1,.36,1);
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(30px) scale(.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-media img,
+.modal-media video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.modal-text {
+  padding: 1.5rem 2rem 2rem;
+}
+
+.modal-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  margin-bottom: .6rem;
+}
+
+.modal-tags {
+  font-size: .95rem;
+  color: #b0b0b0;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 1.2rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+.modal-close:hover { background: rgba(255,255,255,0.25); }
+
+.modal-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+.modal-nav button {
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 1.2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+.modal-nav button:hover { background: rgba(255,255,255,0.25); }
+
+/* ---------- FADE-UP ---------- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1.2s cubic-bezier(.22,1,.36,1);
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .hero-title { font-size: 2.4rem; }
+  .showcase-grid { gap: 1.8rem; }
+  .modal-content { width: 94%; }
+}
+
+@media (max-width: 600px) {
+  .hero-sub { font-size: .9rem; }
+  .showcase-info h2 { font-size: 1.2rem; }
+  .modal-title { font-size: 1.4rem; }
+}
+
