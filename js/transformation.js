@@ -1,25 +1,28 @@
 /* ----------------------------------------------------------
    transformation.js — Cinematic Dark Transformations Page
+   (Optimized: Removed redundant fade-up and footer-year code)
    ---------------------------------------------------------- */
 
 document.addEventListener("DOMContentLoaded", () => {
 
   // =============== 1. HERO PARALLAX ===============
   const hero = document.querySelector(".dark-hero");
-  const bg = document.querySelector(".hero-bg");
-  const light = document.querySelector(".hero-light");
+  const bg = hero ? hero.querySelector(".hero-bg") : null;
+  const light = hero ? hero.querySelector(".hero-light") : null;
 
   if (bg && bg.dataset.src) {
     const img = new Image();
     img.src = bg.dataset.src;
     img.onload = () => {
       bg.style.backgroundImage = `url('${bg.dataset.src}')`;
-      hero.classList.add("visible");
+      if(hero) hero.classList.add("visible");
     };
+  } else if (hero) {
+    hero.classList.add("visible");
   }
 
   window.addEventListener("scroll", () => {
-    if (!hero) return;
+    if (!hero || !bg) return;
     const scrollY = window.scrollY;
     const rect = hero.getBoundingClientRect();
     const parallax = scrollY * 0.3;
@@ -30,20 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
         light.style.transform = `translate(${parallax * 0.05}px, ${-parallax * 0.05}px)`;
       }
     }
-  });
+  }, { passive: true }); // Added passive listener
 
   // =============== 2. FADE-UP ANIMATIONS ===============
-  const revealEls = document.querySelectorAll(".fade-up, .transform-card");
-  const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        fadeObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-
-  revealEls.forEach(el => fadeObserver.observe(el));
+  // Removed. This is now handled globally by js/main.js.
 
   // =============== 3. BEFORE/AFTER SLIDER LOGIC ===============
   const sliders = document.querySelectorAll(".before-after");
@@ -53,40 +46,50 @@ document.addEventListener("DOMContentLoaded", () => {
     const afterEl = slider.querySelector(".ba-image.after");
     const handle = slider.querySelector(".ba-handle");
 
+    // Defensive check
+    if (!beforeEl || !afterEl || !handle) {
+      return;
+    }
+
     const beforeSrc = slider.dataset.before;
     const afterSrc = slider.dataset.after;
 
     // Lazy load images
-    const imgBefore = new Image();
-    const imgAfter = new Image();
-
-    imgBefore.src = beforeSrc;
-    imgAfter.src = afterSrc;
-    imgBefore.onload = () => beforeEl.style.backgroundImage = `url('${beforeSrc}')`;
-    imgAfter.onload = () => afterEl.style.backgroundImage = `url('${afterSrc}')`;
+    if(beforeSrc) {
+      const imgBefore = new Image();
+      imgBefore.src = beforeSrc;
+      imgBefore.onload = () => beforeEl.style.backgroundImage = `url('${beforeSrc}')`;
+    }
+    
+    if(afterSrc) {
+      const imgAfter = new Image();
+      imgAfter.src = afterSrc;
+      imgAfter.onload = () => afterEl.style.backgroundImage = `url('${afterSrc}')`;
+    }
 
     // State
     let isDragging = false;
-    let startX = 0;
-    let handleX = 0;
 
     const updateSlider = (x) => {
       const rect = slider.getBoundingClientRect();
+      // Calculate offset from the slider's left edge
       const offsetX = Math.max(0, Math.min(x - rect.left, rect.width));
       const percent = (offsetX / rect.width) * 100;
+      
       afterEl.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
       handle.style.left = `${percent}%`;
-      handle.setAttribute("aria-valuenow", Math.round(percent));
+      handle.setAttribute("aria-valuenow", String(Math.round(percent)));
     };
 
     const onDragStart = (e) => {
+      e.preventDefault(); // Prevent text selection
       isDragging = true;
       slider.classList.add("dragging");
-      startX = e.type.startsWith("touch") ? e.touches[0].clientX : e.clientX;
     };
 
     const onDragMove = (e) => {
       if (!isDragging) return;
+      // Use clientX which is standard for mouse/touch
       const currentX = e.type.startsWith("touch") ? e.touches[0].clientX : e.clientX;
       updateSlider(currentX);
     };
@@ -101,28 +104,47 @@ document.addEventListener("DOMContentLoaded", () => {
     handle.addEventListener("mousedown", onDragStart);
     window.addEventListener("mousemove", onDragMove);
     window.addEventListener("mouseup", onDragEnd);
+    window.addEventListener("mouseleave", onDragEnd); // Handle mouse leaving window
 
     // Touch events
-    handle.addEventListener("touchstart", onDragStart, { passive: true });
-    window.addEventListener("touchmove", onDragMove, { passive: true });
+    handle.addEventListener("touchstart", onDragStart, { passive: false }); // Use false to allow preventDefault
+    window.addEventListener("touchmove", onDragMove, { passive: true }); // Move can be passive
     window.addEventListener("touchend", onDragEnd);
 
     // Keyboard accessibility
     handle.addEventListener("keydown", (e) => {
-      let currentPercent = parseInt(handle.getAttribute("aria-valuenow")) || 50;
-      if (e.key === "ArrowLeft") currentPercent = Math.max(0, currentPercent - 5);
-      if (e.key === "ArrowRight") currentPercent = Math.min(100, currentPercent + 5);
-      const rect = slider.getBoundingClientRect();
-      const x = rect.left + (rect.width * (currentPercent / 100));
-      updateSlider(x);
+      let currentPercent = parseInt(handle.getAttribute("aria-valuenow") || "50", 10);
+      let newPercent = currentPercent;
+
+      if (e.key === "ArrowLeft") {
+        newPercent = Math.max(0, currentPercent - 5);
+      } else if (e.key === "ArrowRight") {
+        newPercent = Math.min(100, currentPercent + 5);
+      } else if (e.key === "Home") {
+        newPercent = 0;
+      } else if (e.key === "End") {
+        newPercent = 100;
+      }
+
+      if (newPercent !== currentPercent) {
+        const rect = slider.getBoundingClientRect();
+        const x = rect.left + (rect.width * (newPercent / 100));
+        updateSlider(x);
+      }
     });
 
-    // Initialize midpoint
-    requestAnimationFrame(() => updateSlider(slider.offsetLeft + slider.offsetWidth / 2));
+    // Initialize at midpoint
+    // Use requestAnimationFrame to ensure layout is calculated
+    requestAnimationFrame(() => {
+        const rect = slider.getBoundingClientRect();
+        if(rect.width > 0) {
+            updateSlider(rect.left + rect.width / 2);
+        }
+    });
   });
 
   // =============== 4. CTA BUTTON HOVER LIGHT REFLECTION ===============
-  const ctaBtn = document.querySelector(".transforms-cta .cta-btn");
+  const ctaBtn = document.querySelector(".transforms-cta-section .cta-btn");
   if (ctaBtn) {
     ctaBtn.addEventListener("mousemove", (e) => {
       const rect = ctaBtn.getBoundingClientRect();
@@ -136,6 +158,5 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =============== 5. FOOTER YEAR AUTO UPDATE ===============
-  const yearSpan = document.getElementById("yr-full");
-  if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+  // Removed. This is now handled globally by js/main.js.
 });
