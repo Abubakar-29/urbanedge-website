@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------
    journal.js — Apple-Newsroom style logic
-   Full replacement file — paste to js/journal.js
+   (Optimized: Removed redundant fade-up and footer-year code)
    ---------------------------------------------------------- */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   cards.forEach(card => {
     const imgEl = card.querySelector(".card-media");
     const src = card.dataset.src;
-    if (src) {
+    if (src && imgEl) { // Added defensive check
       const img = new Image();
       img.src = src;
       img.onload = () => {
@@ -21,32 +21,34 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ---------- 2️⃣ Fade-up on scroll ---------- */
-  const fadeEls = document.querySelectorAll(".fade-up");
-  const fadeObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        fadeObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-  fadeEls.forEach(el => fadeObserver.observe(el));
+  // Removed. This is now handled globally by js/main.js.
 
   /* ---------- 3️⃣ Modal Preview ---------- */
   const modal = document.getElementById("journal-modal");
+  
+  // Defensive check if modal exists on this page
+  if (!modal || cards.length === 0) {
+    return;
+  }
+
   const backdrop = modal.querySelector(".journal-modal-backdrop");
-  const modalInner = modal.querySelector(".journal-modal-inner");
   const modalMedia = modal.querySelector(".modal-media");
   const modalTitle = modal.querySelector("#modal-title");
   const modalExcerpt = modal.querySelector("#modal-excerpt");
   const readFull = modal.querySelector("#read-full");
   const closeBtn = modal.querySelector(".modal-close");
 
+  // Check for all required modal elements
+  if (!backdrop || !modalMedia || !modalTitle || !modalExcerpt || !readFull || !closeBtn) {
+    console.warn("Journal modal is missing required elements.");
+    return;
+  }
+
   let lastFocused = null;
 
   const openModal = (card) => {
     if (!card) return;
-    lastFocused = document.activeElement;
+    lastFocused = document.activeElement; // Save focus for accessibility
 
     const src = card.dataset.src;
     const title = card.dataset.title;
@@ -58,13 +60,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
-    closeBtn.focus();
+    closeBtn.focus(); // Move focus to the close button
   };
 
   const closeModal = () => {
     modal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
-    if (lastFocused) lastFocused.focus();
+    if (lastFocused) lastFocused.focus(); // Return focus to the element that opened the modal
   };
 
   // card click / enter open modal
@@ -97,10 +99,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const filter = btn.dataset.filter;
       cards.forEach(card => {
         if (!filter || filter === "all" || btn.id === "filter-all") {
-          card.style.display = "";
+          card.style.display = ""; // Show all
         } else {
           const tags = (card.dataset.tags || "").toLowerCase();
-          card.style.display = tags.includes(filter.toLowerCase()) ? "" : "none";
+          card.style.display = tags.includes(filter.toLowerCase()) ? "" : "none"; // Show if tag matches
         }
       });
     });
@@ -149,7 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ---------- 8️⃣ Auto-year update ---------- */
-  const yearEl = document.getElementById("yr-full");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  // Removed. This is now handled globally by js/main.js.
 
 });
