@@ -1,150 +1,206 @@
 /* ----------------------------------------------------------
-   footer.css — Global Footer Styles
-   Defines the ".glass-footer" and ensures consistency
-   across both light and dark pages.
+   footer.css — Glass Footer for UrbanEdge
+   (Based on user's superior file, now theme-aware)
    ---------------------------------------------------------- */
 
 .site-footer {
-  /* This is the "glassmorphism" effect.
-    On dark pages, it picks up the dark background and blurs it.
-    On light pages, it does the same with the light background.
-  */
-  background: rgba(255, 255, 255, 0.05); /* Faint white background */
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px); /* For Safari */
-  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
-  padding: 4rem 0 2rem;
-  margin-top: 6rem; /* Give space from content above */
   position: relative;
-  z-index: 10;
+  /* Glass effect from user's file */
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  
+  /* THIS IS THE FIX: Inherit color from the BODY tag */
+  /* On light pages, this will be dark. On dark pages, this will be light. */
+  color: inherit; 
+  
+  padding: 5rem 2rem 3rem;
+  overflow: hidden;
+  transition: background 0.5s ease;
+  margin-top: 6rem; /* Added from my previous fix */
+  z-index: 10; /* Added from my previous fix */
 }
 
 .footer-inner {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr; /* 3-column layout: brand, links, contact */
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 3rem;
+  align-items: start;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
 }
 
-/*
-  THIS IS THE FIX FOR THE "DIM" TEXT.
-  We are setting all base text and headers to a light color.
-*/
-.footer-brand,
-.footer-links,
-.footer-contact,
-.footer-bottom p {
-  color: #c0c0c0; /* A soft, light grey */
+.footer-brand {
+  text-align: left;
 }
 
-.footer-brand h4,
-.footer-links h4,
-.footer-contact h4 {
-  font-family: "Playfair Display", serif;
-  font-size: 1.25rem;
-  color: #ffffff; /* Pure white for headers */
-  margin-bottom: 1.25rem;
-}
-
+/* Titles and Brand text will inherit color (white on dark, dark on light) */
 .footer-logo-text {
-  font-family: "Playfair Display", serif;
-  font-size: 1.4rem;
-  color: #ffffff;
   display: block;
-  margin-bottom: 0.5rem;
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  color: inherit; /* FIX */
 }
 
 .footer-brand .logo-svg {
-  color: #ffffff;
+  color: inherit; /* FIX */
   width: 28px;
   height: 28px;
-  margin-bottom: 0.5rem;
 }
 
 .footer-tagline {
+  font-family: "Inter", sans-serif;
   font-size: 0.95rem;
-  line-height: 1.6;
-  max-width: 300px;
+  /* FIX: Use an alpha-blended color to look good on both themes */
+  /* This is 70% opacity of the main text color */
+  color: hsla(0, 0%, 0%, 0.7); 
 }
 
-/*
-  THIS IS THE FIX FOR THE "DIM" LINKS.
-  We are making all links in the footer light, with a hover effect.
-*/
+/* This rule will make the tagline light on dark pages */
+.dark-hero + main + .site-footer .footer-tagline,
+body[style*="radial-gradient"] .footer-tagline {
+    color: hsla(0, 0%, 100%, 0.7);
+}
+
+
+.footer-links h4,
+.footer-contact h4 {
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: inherit; /* FIX */
+}
+
 .footer-links ul {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
 .footer-links li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
 }
 
-.footer-links a,
-.footer-contact a {
-  color: #c0c0c0; /* Soft light grey */
+/* Kept all your original link animations! */
+.footer-links a {
+  font-family: "Inter", sans-serif;
   text-decoration: none;
-  font-weight: 500;
+  color: inherit; /* FIX */
+  opacity: 0.8; /* Slightly muted */
+  position: relative;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.footer-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: #ff6600; /* Accent color is great */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(.22,1,.36,1);
+}
+
+.footer-links a:hover {
+  color: #ff6600; /* Kept your hover color */
+  opacity: 1;
+}
+
+.footer-links a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Contact */
+.footer-contact p {
+  font-family: "Inter", sans-serif;
   font-size: 0.95rem;
+  color: inherit; /* FIX */
+  opacity: 0.8; /* Slightly muted */
+  margin-bottom: 0.8rem;
+}
+
+.footer-contact a {
+  color: inherit; /* FIX */
+  opacity: 1; /* Make links full brightness */
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.footer-links a:hover,
 .footer-contact a:hover {
-  color: #ffffff; /* Bright white on hover */
+  color: #ff6600;
 }
 
-.footer-contact p {
-  font-size: 0.95rem;
-  margin-bottom: 0.75rem;
-}
-
+/* Social Icons - Kept all your styles! */
 .footer-social {
   display: flex;
-  gap: 1.25rem;
-  margin-top: 1.25rem;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .footer-social a {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff6600; /* Accent color is perfect */
   font-size: 1.1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.footer-social a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(255, 102, 0, 0.2);
+}
+
+/* Bottom Line */
 .footer-bottom {
-  text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 2rem;
+  border-top: 1px solid rgba(0,0,0,0.08);
   margin-top: 3rem;
+  padding-top: 2rem;
+  text-align: center;
+  font-family: "Inter", sans-serif;
   font-size: 0.9rem;
+  color: inherit; /* FIX */
+  opacity: 0.6; /* Muted */
 }
 
-/* Responsive Styles for Tablet */
-@media (max-width: 900px) {
-  .footer-inner {
-    grid-template-columns: 1fr 1fr; /* 2-column layout */
-    gap: 3rem;
-  }
-  .footer-brand {
-    grid-column: 1 / -1; /* Make brand span full width */
-    text-align: center;
-    max-width: 400px;
-    margin: 0 auto;
-  }
+/* This rule will make the border light on dark pages */
+.dark-hero + main + .site-footer .footer-bottom,
+body[style*="radial-gradient"] .footer-bottom {
+    border-top-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Responsive Styles for Mobile */
-@media (max-width: 600px) {
+
+/* Animations - (This is already in main.js, but safe to keep) */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s cubic-bezier(.22,1,.36,1);
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
   .footer-inner {
-    grid-template-columns: 1fr; /* 1-column stack */
-    gap: 2.5rem;
-  }
-  .footer-brand,
-  .footer-links,
-  .footer-contact {
+    grid-template-columns: 1fr;
     text-align: center;
   }
+
   .footer-social {
     justify-content: center;
   }
