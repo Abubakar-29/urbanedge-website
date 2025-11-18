@@ -1,9 +1,10 @@
 /* ----------------------------------------------------------
    footer.css — Glass Footer for UrbanEdge
-   (This is your original file, with all animations intact)
+   (This is YOUR original, high-quality file, with all
+   animations and .glass-footer class intact)
    ---------------------------------------------------------- */
 
-.site-footer { /* Renamed from .glass-footer to match HTML */
+.glass-footer {
   position: relative;
   background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(16px) saturate(180%);
@@ -13,7 +14,7 @@
   padding: 5rem 2rem 3rem;
   overflow: hidden;
   transition: background 0.5s ease;
-  margin-top: 6rem;
+  /* margin-top: 6rem; (This is already in style.css) */
   z-index: 10;
 }
 
@@ -39,6 +40,7 @@
   color: #111; /* Default dark */
 }
 
+/* This style was missing, let's add it */
 .footer-brand .logo-svg {
   color: #111; /* Default dark */
   width: 28px;
@@ -156,18 +158,6 @@
   color: #666; /* Default dark */
 }
 
-/* Your original fade-up logic (handled by main.js but safe here) */
-.fade-up {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 1s cubic-bezier(.22,1,.36,1);
-}
-
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* Your original responsive rules */
 @media (max-width: 700px) {
   .footer-inner {
@@ -182,37 +172,40 @@
 
 /*
  =============================================================
-   NEW PROFESSIONAL-GRADE THEME FIX
-   This block overrides the colors ONLY on dark pages.
-   It targets any page where the <body> tag has a background
-   style containing "radial-gradient".
+   NEW PROFESSIONAL-GRADE THEME FIX (USING .theme-dark)
+   This block overrides the colors ONLY when the footer
+   is on a page with <body class="theme-dark">
  =============================================================
 */
-body[style*="radial-gradient"] .site-footer {
+.theme-dark .glass-footer {
   color: #e0e0e0; /* Light grey base text */
   border-top-color: rgba(255, 255, 255, 0.2); /* Light border */
+  background: rgba(18, 18, 18, 0.65); /* Dark glass background */
 }
 
-body[style*="radial-gradient"] .footer-logo-text,
-body[style*="radial-gradient"] .footer-brand .logo-svg,
-body[style*="radial-gradient"] .footer-links h4,
-body[style*="radial-gradient"] .footer-contact h4 {
+.theme-dark .footer-logo-text,
+.theme-dark .footer-brand .logo-svg,
+.theme-dark .footer-links h4,
+.theme-dark .footer-contact h4 {
   color: #ffffff; /* Pure white titles */
 }
 
-body[style*="radial-gradient"] .footer-tagline,
-body[style*="radial-gradient"] .footer-links a,
-body[style*="radial-gradient"] .footer-contact p,
-body[style*="radial-gradient"] .footer-contact a {
+.theme-dark .footer-tagline,
+.theme-dark .footer-links a,
+.theme-dark .footer-contact p {
   color: #c0c0c0; /* Light grey for links and p tags */
 }
 
-body[style*="radial-gradient"] .footer-links a:hover,
-body[style*="radial-gradient"] .footer-contact a:hover {
+.theme-dark .footer-contact a {
+  color: #ffffff; /* Make email/phone links pure white */
+}
+
+.theme-dark .footer-links a:hover,
+.theme-dark .footer-contact a:hover {
   color: #ff6600; /* Hover color remains your accent */
 }
 
-body[style*="radial-gradient"] .footer-bottom {
+.theme-dark .footer-bottom {
   border-top-color: rgba(255, 255, 255, 0.2); /* Light border */
   color: #a0a0a0; /* Muted light grey */
 }
